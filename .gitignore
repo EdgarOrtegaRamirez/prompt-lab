@@ -72,3 +72,4 @@ Thumbs.db
 
 # Config files with potential secrets
 .prompt-lab/
+uv.lock

@@ -2,9 +2,6 @@
 
 from __future__ import annotations
 
-import re
-from typing import Optional
-
 
 def count_tokens_tiktoken(text: str, model: str = "gpt-4o") -> int:
     """Count tokens using tiktoken library.
@@ -47,7 +44,7 @@ def _fallback_token_count(text: str) -> int:
     return count_tokens_approx(text)
 
 
-def estimate_tokens(text: str, model: Optional[str] = None) -> int:
+def estimate_tokens(text: str, model: str | None = None) -> int:
     """Estimate token count, falling back gracefully.
 
     Args:

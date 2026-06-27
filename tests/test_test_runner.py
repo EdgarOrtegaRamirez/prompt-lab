@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pytest
 
-from prompts_lab.models import Config, ModelInfo, ModelProvider, PromptVariant, ScoringCriteria
+from prompts_lab.models import ModelInfo, ModelProvider, PromptVariant
 from prompts_lab.test_runner import PromptTestRunner
 
 

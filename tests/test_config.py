@@ -2,13 +2,10 @@
 
 from __future__ import annotations
 
-import tempfile
 from pathlib import Path
 
-import pytest
-
 from prompts_lab.config import ConfigLoader, get_sample_config
-from prompts_lab.models import Config, ModelProvider, ScoringCriteria
+from prompts_lab.models import Config
 
 
 class TestConfigLoader:

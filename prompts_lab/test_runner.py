@@ -9,17 +9,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from prompts_lab.mock_client import MockAPIClient
 from prompts_lab.models import (
     Config,
     HistoryEntry,
     ModelInfo,
-    ModelProvider,
     PromptVariant,
     ScoringCriteria,
     TestRecord,
     TestResult,
 )
-from prompts_lab.mock_client import MockAPIClient
 from prompts_lab.scorer import ScoringEngine
 from prompts_lab.template_engine import PromptTemplateEngine
 
@@ -100,9 +99,6 @@ class PromptTestRunner:
         messages.append({"role": "user", "content": rendered["user"]})
 
         user_prompt = rendered["user"]
-
-        # Determine token counts
-        prompt_tokens = rendered.get("token_counts", {}).get("system", 0) + rendered.get("token_counts", {}).get("user", 0)
 
         # Call the API (mock or real)
         test_result = await self._call_model(messages, model, variant)

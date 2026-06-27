@@ -9,9 +9,8 @@ import sys
 from pathlib import Path
 
 from prompts_lab import __version__
-from prompts_lab.config import ConfigLoader, get_sample_config
-from prompts_lab.models import Config, Config as ConfigModel, ModelInfo, ModelProvider, ScoringCriteria
-from prompts_lab.models import PromptVariant
+from prompts_lab.config import get_sample_config
+from prompts_lab.models import Config, ModelInfo, ModelProvider, PromptVariant
 from prompts_lab.test_runner import PromptTestRunner
 
 
@@ -74,7 +73,7 @@ def build_parser() -> argparse.ArgumentParser:
     eval_parser.add_argument("--criteria", help="Comma-separated criterion names")
 
     # history command
-    history_parser = subparsers.add_parser("history", help="View test history")
+    subparsers.add_parser("history", help="View test history")
 
     # sample-config command
     subparsers.add_parser("sample-config", help="Print sample configuration")
@@ -160,7 +159,7 @@ def cmd_compare(args: argparse.Namespace, runner: PromptTestRunner) -> None:
     if args.model:
         model = ModelInfo(id=args.model, provider=ModelProvider.OPENAI)
 
-    results = asyncio.run(runner.run_batch(variants, model, evaluate=args.evaluate))
+    asyncio.run(runner.run_batch(variants, model, evaluate=args.evaluate))
 
     summary = runner.get_results_summary()
     if args.output:
